@@ -10,6 +10,7 @@ import one.challenge.forum_hub.domain.usuario.dtos.DadosCadastroUsuario;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Collection;
 import java.util.List;
@@ -31,11 +32,11 @@ public class Usuario implements UserDetails {
     private String usuario;
     private String senha;
 
-    public Usuario(DadosCadastroUsuario dados) {
+    public Usuario(DadosCadastroUsuario dados, PasswordEncoder passwordEncoder) {
         this.nome = dados.nome();
         this.usuario = dados.usuario();
         this.email = dados.email();
-        this.senha = dados.senha();
+        this.senha = passwordEncoder.encode(dados.senha());
     }
 
     @Override

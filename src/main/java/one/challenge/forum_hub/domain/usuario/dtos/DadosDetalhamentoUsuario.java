@@ -10,7 +10,7 @@ public record DadosDetalhamentoUsuario(
 ) {
 
     public DadosDetalhamentoUsuario(Usuario usuario) {
-        this(usuario.getId(), usuario.getNome(), usuario.getUsuario(), usuario.getEmail());
+        this(usuario.getId(), usuario.getNome(), usuario.getEmail(), usuario.getUsuario());
 
     }
 }

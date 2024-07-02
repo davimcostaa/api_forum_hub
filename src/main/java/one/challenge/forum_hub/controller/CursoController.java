@@ -1,5 +1,6 @@
 package one.challenge.forum_hub.controller;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -8,7 +9,7 @@ import one.challenge.forum_hub.domain.curso.CursoRepository;
 import one.challenge.forum_hub.domain.curso.dtos.DadosAtualizacaoCurso;
 import one.challenge.forum_hub.domain.curso.dtos.DadosCadastroCurso;
 import one.challenge.forum_hub.domain.curso.dtos.DadosListagemCurso;
-import one.challenge.forum_hub.domain.usuario.dtos.DadosDetalhamentoCurso;
+import one.challenge.forum_hub.domain.curso.dtos.DadosDetalhamentoCurso;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,6 +20,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("cursos")
+@SecurityRequirement(name = "bearer-key")
 public class CursoController {
 
     @Autowired

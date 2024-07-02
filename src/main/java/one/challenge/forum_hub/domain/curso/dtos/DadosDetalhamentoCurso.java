@@ -1,4 +1,4 @@
-package one.challenge.forum_hub.domain.usuario.dtos;
+package one.challenge.forum_hub.domain.curso.dtos;
 
 import one.challenge.forum_hub.domain.curso.Categoria;
 import one.challenge.forum_hub.domain.curso.Curso;

@@ -24,6 +24,7 @@ public class TokenService {
             return JWT.create()
                     .withIssuer("Forum_Hub")
                     .withSubject(usuario.getUsuario())
+                    .withClaim("id", usuario.getId())
                     .withExpiresAt(dataExpiracao())
                     .sign(algoritmo);
         } catch (JWTCreationException exception){
@@ -39,6 +40,20 @@ public class TokenService {
                     .build()
                     .verify(tokenJWT)
                     .getSubject();
+
+        } catch (JWTVerificationException exception){
+            throw new JWTVerificationException("Token JWT inválido ou expirado!");
+        }
+    }
+
+    public Long getClaim(String tokenJWT) {
+        try {
+            var algoritmo = Algorithm.HMAC256(secret);
+            return JWT.require(algoritmo)
+                    .withIssuer("Forum_Hub")
+                    .build()
+                    .verify(tokenJWT)
+                    .getClaim("id").asLong();
 
         } catch (JWTVerificationException exception){
             throw new JWTVerificationException("Token JWT inválido ou expirado!");
